@@ -1,0 +1,13 @@
+# UrbanLaw for Claude
+
+Claude 채팅·Cowork·Claude Code에서 희림 사내 UrbanLaw로 토지 정보를 보고 건축법규·도시계획 조문을 찾고 UrbanLaw 법규 검토를 돌립니다.
+
+- 명령: `/urbanlaw 강남구 역삼동 737 업무시설 신축 법규 검토` (Claude Code는 `/urbanlaw`, Cowork는 `/urbanlaw:urbanlaw`, 채팅에서는 그냥 말해도 됩니다)
+- 설치(Claude Code): `claude plugin install urbanlaw --marketplace heeai-cloud/urbanlaw` · Claude 앱은 «마켓플레이스 추가»에 `heeai-cloud/urbanlaw`
+- 연결: 커넥터 주소는 `https://urbanlaw.heeai.cloud/mcp`입니다. 연결할 때 heeai.cloud 로그인 화면이 뜹니다(희림 아이디, 사내 도구 대문과 같은 아이디).
+- 할 수 있는 것: 토지 정보(용도지역·지구단위계획·토지이용규제·건축물대장), 법령 찾기(조문 원문과 국가법령정보센터 링크), 법규 검토(보통 5~10분, 끝나면 UrbanLaw «내 보고서»에 저장), 법령 개정 이력
+- 주고받는 곳: urbanlaw.heeai.cloud 한 곳입니다. 검토 질문과 결과는 희림 사내 서버에 저장됩니다.
+- UrbanLaw 결과는 실무 검토용 참고 자료이며 법률 의견이 아닙니다.
+- 설치 안내: https://urbanlaw.heeai.cloud/claude/ (희림 아이디로 로그인해서 엽니다)
+
+© HeeAI. All rights reserved.

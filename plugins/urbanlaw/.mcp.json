@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "urbanlaw": {
+      "type": "http",
+      "url": "https://urbanlaw.heeai.cloud/mcp"
+    }
+  }
+}

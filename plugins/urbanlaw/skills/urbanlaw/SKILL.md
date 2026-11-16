@@ -1,0 +1,41 @@
+---
+name: urbanlaw
+description: "희림 사내 UrbanLaw: 주소로 용도지역·지구단위계획 같은 토지 정보를 보고, 건축법규·도시계획 조문을 찾고, UrbanLaw 법규 검토를 돌립니다."
+argument-hint: "[주소 또는 법규 질문]"
+---
+
+# UrbanLaw — 건축법규·도시계획 검토
+
+UrbanLaw 커넥터 도구로 토지 정보와 법령 조문을 찾고 법규 검토를 돌린다. 회사판 UrbanLaw(urbanlaw.heeai.cloud)와 같은 법령 DB와 같은 검토 엔진을 쓴다. 요청: $ARGUMENTS
+
+**답은 사용자가 이번 요청을 쓴 언어로 한다.** 이 안내문과 도구 메시지가 한국어여도 영어로 물으면 영어로 답한다.
+
+## 1. 연결 확인
+- UrbanLaw 도구(`find_address`, `search_laws`, `start_review` …)가 안 보이면 연결부터 안내한다. 커넥터 주소는 `https://urbanlaw.heeai.cloud/mcp`이고, 연결할 때 heeai.cloud 로그인 화면(희림 아이디·비밀번호, 사내 도구 대문과 같은 아이디)이 뜬다. 이미 대문에 로그인된 브라우저면 «연결» 확인 화면만 나온다.
+  - Claude Code: `/mcp` → urbanlaw → Authenticate.
+  - claude.ai·Cowork: 플러그인의 **커넥터(Connectors)** 탭에서 urbanlaw «연결».
+  - 회사 조직 계정으로 쓰는데 «연결»이 눌리지 않으면 조직 관리자(Owner)가 먼저 **조직 설정 → 커넥터(Organization settings → Connectors)**에서 `https://urbanlaw.heeai.cloud/mcp`를 커스텀 커넥터로 추가해야 한다. OAuth 클라이언트는 Claude가 찾은 «자동으로 등록» 그대로 둔다.
+  - 설치 안내: https://urbanlaw.heeai.cloud/claude/ (희림 아이디로 로그인해서 연다)
+- 도구가 «unauthorized»·401로 실패하면 연결이 풀린 것이다(heeai.cloud 비밀번호를 바꿨거나 관리자가 로그아웃시킨 경우). 같은 방법으로 다시 연결하라고 안내한다.
+
+## 2. 어떤 도구를 쓸지
+- 필지 질문(«이 땅 용도지역·건폐율·용적률», «지구단위계획 걸려 있어?»): `find_address` → `get_land_info`. 몇 초면 끝난다. 숫자는 결과 그대로 옮기고 근거(지구단위계획 구역명·고시)를 함께 말한다.
+- 법령 질문(«일반상업지역에 공동주택 돼?», «부설주차장 설치기준»): `search_laws`로 조문을 찾아 원문에 근거해 답하고 조문 번호와 링크(url)를 붙인다. 결과가 빗나가면 법령 용어를 바꾸거나 `law`로 법령을 좁혀 한두 번 더 찾는다. 찾은 조문에 없는 내용은 추측하지 말고 확인이 필요하다고 말한다.
+- 종합 검토(«이 땅에 ○○ 지으면 법규 검토해 줘», «UrbanLaw 보고서로»): `start_review`. 시작하기 전에 5~10분(길면 15분 넘게) 걸린다고 말한다. 빠른 답으로 충분해 보이는 질문이면 `get_land_info`·`search_laws`로 먼저 답하고 정식 검토를 원하는지 묻는다.
+- 법령 개정(«건축법 최근에 바뀐 것», «시행 예정 개정»): `law_changes`.
+
+## 3. 법규 검토 돌리기
+1. 필지 검토면 `find_address`로 pnu를 찾고 `start_review`에 `question`과 `pnu`를 넣는다. 일반 법규 질문이면 pnu 없이 부른다.
+   - question은 한국어로 조건을 넣어 쓴다(용도·규모·확인할 항목). 예: «지하 3층·지상 15층 업무시설 신축 시 건폐율·용적률·높이·주차 검토».
+   - style: 가능·불가 판정은 `consulting`(기본), 적용 규제 정리는 `regulation`, 법령 적용 해석은 `interpret`. 판례·행정심판례까지 보려면 `include_precedent: true`(더 걸린다).
+2. `get_review`에 review_id를 넣어 부른다. 한 번에 최대 약 50초 기다렸다가 진행률·단계를 돌려준다. 끝날 때까지 다시 부르고 그사이 진행 단계를 한 줄로 알린다.
+3. 끝나면 `final_report`로 답한다. 판정·주요 수치·조건·확인할 점을 먼저 정리하고 사용자가 원하면 전체를 보여 준다. 링크·조문 번호·수치는 바꾸지 않는다. 전문가별 의견이 필요하면 `include_opinions: true`로 다시 부른다.
+4. 검토 결과는 UrbanLaw «내 보고서»(https://urbanlaw.heeai.cloud/reports)에도 저장된다고 알린다.
+- 사용자가 기다리지 않겠다고 하면 `get_review`를 그만 부른다. 검토는 계속 돌고 끝나면 저장된다. 나중에 `list_my_reviews` → `get_review`로 다시 연다.
+- 멈춰 달라고 하면 `cancel_review`.
+
+## 4. 주의
+- UrbanLaw 결과는 실무 검토용 참고 자료이며 법률 의견이 아니다. 결론을 말할 때 한 줄로 밝히고 근거 조문을 가리킨다.
+- 법령 DB는 매주 국가법령정보센터에서 새로 받는다. 아주 최근 개정은 `law_changes`로 확인한다.
+- «법규 검토는 아이디마다 24시간에 …건까지», «진행 중인 검토가 …건» 오류는 아이디별 한도다. 토지 정보·법령 찾기는 계속 된다.
+- 도구 오류 메시지에 고칠 방법이 같이 오면 그걸 보고 한 번 다시 시도한다.
