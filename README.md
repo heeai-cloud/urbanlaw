@@ -23,6 +23,7 @@ claude plugin install urbanlaw --marketplace heeai-cloud/urbanlaw
 ## 쓰는 법
 
 - `/urbanlaw 강남구 역삼동 737 업무시설 신축 법규 검토` (Cowork는 `/urbanlaw:urbanlaw`, 채팅에서는 그냥 말해도 됩니다)
+- 땅 정보는 UrbanLaw Step 1 화면의 내용을 모두 받고, 지구단위계획·특별계획구역·가로구역·정비사업 고시 문서(PDF·HWP·결정도)도 Claude가 직접 읽습니다(최근 고시부터).
 - 토지 정보와 법령 찾기는 몇 초 안에 끝납니다. 별표처럼 긴 표는 전문을 끝까지 읽습니다. 법규 검토는 보통 5~10분 걸리고 끝나면 UrbanLaw «내 보고서»에 저장됩니다.
 - UrbanLaw 결과는 실무 검토용 참고 자료이며 법률 의견이 아닙니다.
 - `/urbanlaw`만 입력하면 물을 수 있는 것과 질문 예를 먼저 보여 줍니다.
