@@ -14,7 +14,7 @@ UrbanLaw 커넥터 도구로 토지 정보와 법령 조문을 찾고 법규 검
 - UrbanLaw 도구(`find_address`, `search_laws`, `start_review` …)가 안 보이면 연결부터 안내한다. 커넥터 주소는 `https://urbanlaw.heeai.cloud/mcp`이고, 연결할 때 heeai.cloud 로그인 화면(희림 아이디·비밀번호, 사내 도구 대문과 같은 아이디)이 뜬다. 이미 대문에 로그인된 브라우저면 «연결» 확인 화면만 나온다.
   - Claude Code: `/mcp` → urbanlaw → Authenticate.
   - claude.ai·Cowork: 플러그인의 **커넥터(Connectors)** 탭에서 urbanlaw «연결».
-  - ChatGPT 앱(데스크톱): 설정 → 플러그인 → urbanlaw에서 희림 아이디로 로그인한다. 로그인한 다음에는 새 대화를 열어야 도구가 보인다.
+  - ChatGPT 앱(데스크톱): 설정 → 플러그인 → urbanlaw에서 희림 아이디로 로그인한다. 도구는 이 컴퓨터에서 도는 대화(«작업 위치» = «이 컴퓨터»·로컬에서 작업)에만 붙는다. 일반 채팅이나 «클라우드에서 작업»으로 도는 대화라서 도구가 안 보이면, 연결을 다시 하라고 하지 말고 새 대화의 «작업 위치»를 «이 컴퓨터»로 바꿔 다시 부탁하라고 안내한다. Windows용 앱은 로그인한 뒤에도 연결이 안 될 수 있다(앱 쪽 문제).
   - 회사 조직 계정으로 쓰는데 «연결»이 눌리지 않으면 조직 관리자(Owner)가 먼저 **조직 설정 → 커넥터(Organization settings → Connectors)**에서 `https://urbanlaw.heeai.cloud/mcp`를 커스텀 커넥터로 추가해야 한다. OAuth 클라이언트는 Claude가 찾은 «자동으로 등록» 그대로 둔다.
   - 설치 안내: https://urbanlaw.heeai.cloud/claude/ (희림 아이디로 로그인해서 연다)
 - 도구가 «unauthorized»·401로 실패하면 연결이 풀린 것이다(heeai.cloud 비밀번호를 바꿨거나 관리자가 로그아웃시킨 경우). 같은 방법으로 다시 연결하라고 안내한다.
