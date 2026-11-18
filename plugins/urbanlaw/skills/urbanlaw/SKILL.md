@@ -14,6 +14,7 @@ UrbanLaw 커넥터 도구로 토지 정보와 법령 조문을 찾고 법규 검
 - UrbanLaw 도구(`find_address`, `search_laws`, `start_review` …)가 안 보이면 연결부터 안내한다. 커넥터 주소는 `https://urbanlaw.heeai.cloud/mcp`이고, 연결할 때 heeai.cloud 로그인 화면(희림 아이디·비밀번호, 사내 도구 대문과 같은 아이디)이 뜬다. 이미 대문에 로그인된 브라우저면 «연결» 확인 화면만 나온다.
   - Claude Code: `/mcp` → urbanlaw → Authenticate.
   - claude.ai·Cowork: 플러그인의 **커넥터(Connectors)** 탭에서 urbanlaw «연결».
+  - ChatGPT 앱(데스크톱): 설정 → 플러그인 → urbanlaw에서 희림 아이디로 로그인한다. 로그인한 다음에는 새 대화를 열어야 도구가 보인다.
   - 회사 조직 계정으로 쓰는데 «연결»이 눌리지 않으면 조직 관리자(Owner)가 먼저 **조직 설정 → 커넥터(Organization settings → Connectors)**에서 `https://urbanlaw.heeai.cloud/mcp`를 커스텀 커넥터로 추가해야 한다. OAuth 클라이언트는 Claude가 찾은 «자동으로 등록» 그대로 둔다.
   - 설치 안내: https://urbanlaw.heeai.cloud/claude/ (희림 아이디로 로그인해서 연다)
 - 도구가 «unauthorized»·401로 실패하면 연결이 풀린 것이다(heeai.cloud 비밀번호를 바꿨거나 관리자가 로그아웃시킨 경우). 같은 방법으로 다시 연결하라고 안내한다.
@@ -22,6 +23,7 @@ UrbanLaw 커넥터 도구로 토지 정보와 법령 조문을 찾고 법규 검
 - 요청이 비어 있으면(`/urbanlaw`만 입력) 무엇을 할지 고르게 한다.
   - 보기 창이 뜨는 앱(claude.ai 채팅·Cowork): `urbanlaw_home`을 부른다. 땅 정보·고시 문서·법령 조문·법규 검토·법령 개정 카드가 있는 첫 화면이 뜬다. 사용자가 카드에서 고르면 그 요청이 메시지로 온다. 답은 «아래 카드에서 고르거나 바로 물어보세요» 한 줄만 쓰고 카드 내용을 글로 되풀이하지 않는다.
   - Claude Code(터미널, 데스크톱 Code 탭): 보기 창이 안 보이므로 도구를 부르지 않고 AskUserQuestion 질문 하나로 고르게 한다. 선택지는 넷이다. 땅 정보·고시 문서(«역삼동 737 용도지역이랑 건폐율·용적률 알려줘»), 법령 조문(«부설주차장 설치기준 알려줘»), 법규 검토(«역삼동 737에 지하 3층·지상 15층 업무시설을 지으면 건폐율·용적률·높이·주차 검토해줘»), 법령 개정(«건축법 최근에 뭐 바뀌었어?»). 고르면 필요한 주소나 질문을 묻고 아래대로 진행한다. AskUserQuestion을 쓸 수 없으면 같은 넷을 짧은 목록으로 보여 주고 묻는다.
+  - ChatGPT 앱(데스크톱): 보기 창이 뜨지 않고 AskUserQuestion도 없다. 도구를 부르지 않고 Claude Code와 같은 선택지를 번호 목록으로 보여 준 다음 사용자의 답을 기다린다.
   - 어느 쪽인지 모르겠으면 `urbanlaw_home`을 부르고 결과의 `for_claude`를 따른다.
   - 자세한 사용법은 https://urbanlaw.heeai.cloud/claude/usage (희림 아이디로 로그인해서 연다).
 - 필지 질문(«이 땅 용도지역·건폐율·용적률», «지구단위계획 걸려 있어?»): `find_address` → `get_land_info`. 몇 초면 끝난다. 숫자는 결과 그대로 옮기고 근거(지구단위계획 구역명·고시)를 함께 말한다. 결과는 UrbanLaw Step 1 화면의 정보 전부다.

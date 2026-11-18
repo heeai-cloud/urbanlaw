@@ -1,6 +1,6 @@
-# UrbanLaw for Claude
+# UrbanLaw for ChatGPT & Claude
 
-희림 사내 건축법규·도시계획 검토 도구 UrbanLaw(urbanlaw.heeai.cloud)를 Claude에서 쓰는 플러그인입니다. 주소로 용도지역·지구단위계획 같은 토지 정보를 보고, 법령 조문을 찾고, UrbanLaw 법규 검토를 대화에서 돌립니다.
+희림 사내 건축법규·도시계획 검토 도구 UrbanLaw(urbanlaw.heeai.cloud)를 ChatGPT와 Claude에서 쓰는 플러그인입니다. 주소로 용도지역·지구단위계획 같은 토지 정보를 보고, 법령 조문을 찾고, UrbanLaw 법규 검토를 대화에서 돌립니다.
 
 로그인은 heeai.cloud 희림 아이디로 합니다. 희림 아이디가 없으면 쓸 수 없습니다.
 
@@ -20,6 +20,15 @@ claude plugin install urbanlaw --marketplace heeai-cloud/urbanlaw
 
 설치한 다음 `/mcp`에서 urbanlaw를 골라 로그인합니다.
 
+## ChatGPT 앱(데스크톱)
+
+1. 설정 → 플러그인에서 «추가 → 마켓플레이스 추가»를 누릅니다.
+2. «출처»에 `heeai-cloud/urbanlaw`(저장소 이름)을 넣고 «마켓플레이스 추가»를 누릅니다. Git ref와 Sparse 경로는 그대로 둡니다.
+3. «디렉터리 찾아보기»에서 플러그인(urbanlaw)을 설치하고 희림 아이디로 로그인합니다.
+4. 로그인한 다음 새 대화를 열고 `@urbanlaw` 뒤에 부탁할 내용을 적습니다.
+
+ChatGPT에서는 Claude 앱에서 뜨는 카드 화면이 뜨지 않습니다.
+
 ## 쓰는 법
 
 - `/urbanlaw 강남구 역삼동 737 업무시설 신축 법규 검토` (Cowork는 `/urbanlaw:urbanlaw`, 채팅에서는 그냥 말해도 됩니다)
@@ -31,6 +40,6 @@ claude plugin install urbanlaw --marketplace heeai-cloud/urbanlaw
 
 ## 주고받는 곳
 
-urbanlaw.heeai.cloud 한 곳입니다. 검토 질문과 결과는 희림 사내 서버에 저장되고 Claude 대화 내용은 받지 않습니다.
+urbanlaw.heeai.cloud 한 곳입니다. 검토 질문과 결과는 희림 사내 서버에 저장되고 대화 내용은 받지 않습니다.
 
 © HeeAI. All rights reserved.

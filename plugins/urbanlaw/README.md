@@ -1,4 +1,4 @@
-# UrbanLaw for Claude
+# UrbanLaw for ChatGPT & Claude
 
 Claude 채팅·Cowork·Claude Code에서 희림 사내 UrbanLaw로 토지 정보를 보고 건축법규·도시계획 조문을 찾고 UrbanLaw 법규 검토를 돌립니다.
 
@@ -10,5 +10,6 @@ Claude 채팅·Cowork·Claude Code에서 희림 사내 UrbanLaw로 토지 정보
 - UrbanLaw 결과는 실무 검토용 참고 자료이며 법률 의견이 아닙니다.
 - `/urbanlaw`만 입력하면 첫 화면이 뜹니다. Claude 채팅·Cowork에서는 카드에 주소나 질문을 넣고 단추를 누르면 바로 시작합니다. Claude Code에서는 선택지 메뉴에서 고릅니다.
 - 설치 안내: https://urbanlaw.heeai.cloud/claude/ · 사용법(질문 예와 받는 답): https://urbanlaw.heeai.cloud/claude/usage (둘 다 희림 아이디로 로그인해서 엽니다)
+- ChatGPT 앱(데스크톱): 설정 → 플러그인 → «추가 → 마켓플레이스 추가»의 «출처»에 `heeai-cloud/urbanlaw`(저장소 이름)을 넣고 설치합니다. 대화에서는 `@urbanlaw` 뒤에 부탁할 내용을 적습니다.
 
 © HeeAI. All rights reserved.
