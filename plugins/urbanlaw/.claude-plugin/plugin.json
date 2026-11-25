@@ -1,6 +1,6 @@
 {
   "name": "urbanlaw",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "주소로 토지 정보를 보고 건축법규·도시계획 조문을 찾고 UrbanLaw 법규 검토를 돌립니다(희림 사내용).",
   "author": {
     "name": "HeeAI",
